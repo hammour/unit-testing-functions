@@ -6,8 +6,21 @@
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+ //input: string
+ //output: boolean (true, false) otherwise throw a 'Invalid Input'
 function checkData(inputString) {
 	// your code goes here
+	if(typeof inputString==='string'){
+		if (inputString.length===3){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else{
+		throw 'Invalid Input';
+	}
 }
 
 /*
@@ -19,6 +32,12 @@ function checkData(inputString) {
  */
 function concatenateArrays(a, b) {
 	// your code goes here
+	if((Array.isArray(a))&&(Array.isArray(b))){
+		return a.concat(b);	
+	}
+	else{
+		throw new Error('Invalid Input');
+	}
 }
 
 /*
@@ -31,7 +50,14 @@ function concatenateArrays(a, b) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function fixProperNoun(noun) {
-	// your code goes here
+	if((typeof noun==='string')&&((noun.indexOf(' ') <= 0))){
+	// your code goes here	
+		return noun.charAt(0).toUpperCase() + noun.slice(1);
+	}
+	else{
+		throw new Error('Invalid Input');
+	}
+	
 }
 
 /*
@@ -42,6 +68,15 @@ function fixProperNoun(noun) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function sortLetters(inputString) {
+	if((typeof inputString==='string')&&((inputString.indexOf(' ') <= 0))){
+	// your code goes here	
+		var nounArray = inputString.split('');
+		var nounArraySorted =nounArray.sort()
+		return nounArraySorted.join('');
+	}
+	else{
+		throw new Error('Invalid Input');
+	}
 	// your code goes here
 }
 
@@ -53,6 +88,18 @@ function sortLetters(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function absVal(integer) {
+	if(typeof integer==='number'){
+		if(integer<0){
+			return integer*-1;
+		}
+		else{
+			return integer;
+		}
+
+	}
+	else{
+		throw new Error('Invalid Input');
+	}
 	// your code goes here
 }
 
@@ -64,6 +111,16 @@ function absVal(integer) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+ function myMin(a,b){
+ 	if((typeof a==='number')&&(typeof b==='number')){
+ 		if(a<=b){return a} else{return b};
+
+ 	}
+ 	else{
+ 		throw new Error('Invalid Input');
+ 	}
+ }
+
 /*
  * PROBLEM `myMax`: (normal) - Actual Interview Question
  * Write a function called `myMax` that takes an array of integers ans returns
@@ -73,6 +130,24 @@ function absVal(integer) {
  *
  * Insane mode: do this without using a for loop.
  */
+
+ function myMax(arrayOfIntegers){
+	 if(Array.isArray(arrayOfIntegers)){
+	 	var max=arrayOfIntegers[0];	
+	 	for(i=0;i<arrayOfIntegers.length;i++){
+	 			if(typeof arrayOfIntegers[i]!=='number'){throw 'Invalid Input';}
+	 			else if(max<arrayOfIntegers[i]){max=arrayOfIntegers[i]}
+
+	 		}
+	 	return max;
+	 		
+
+
+	 	}
+ 	else{
+ 		throw new Error('Invalid Input');
+ 	}
+ }
 
 /*
  * PROBLEM `getMonth`: (normal)
