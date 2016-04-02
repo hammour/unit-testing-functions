@@ -451,7 +451,55 @@ function mySubstring(word,indexStart,indexEnd){
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+ function findBoth(arr1, arr2){
+ 	if((Array.isArray(arr1))&&(Array.isArray(arr2))&&(arr1.length>0)&&(arr2.length>0)){
+ 		//check arr1 typeof elements
+ 		for(var i=0;i<arr1.length;i++){
+ 			if(typeof arr1[i]!=='number'){throw new Error('Invalid Input');}
+ 		}
+ 		//check arr2 typeof elements
+ 		for(var i=0;i<arr2.length;i++){
+ 			if(typeof arr2[i]!=='number'){throw new Error('Invalid Input');}
+ 		}
+ 		//sort arrays
+ 		var arr1Sorted=arr1.sort();
+ 		var arr2Sorted=arr2.sort();
+ 		//remove duplicate from each array
+ 		var arr1New=[],arr2New=[];
+ 		for(var i=0;i<arr1Sorted.length; i++){
+ 			if(arr1Sorted[i]!==arr1Sorted[i+1]){arr1New.push(arr1Sorted[i])}
+ 		}
+ 		if(arr1Sorted[arr1Sorted.length-1]!==arr1Sorted[arr1Sorted.length-2]){arr1New.push(arr1Sorted[arr1Sorted.length-1])}
+ 		
+ 		for(var i=0;i<arr2Sorted.length; i++){
+ 			if(arr2Sorted[i]!==arr2Sorted[i+1]){arr2New.push(arr2Sorted[i])}
+ 		}
+ 		if(arr2Sorted[arr2Sorted.length-1]!==arr2Sorted[arr2Sorted.length-2]){arr2New.push(arr2Sorted[arr2Sorted.length-1])}
+		//compare new arrays and return elements appeard on both
+		var fullArray = arr1Sorted.concat(arr2Sorted).sort();
+		var finalArray=[];
+		for(var i=0;i<fullArray.length;i++){
+			for(var x=i+1; x<fullArray.length;x++){
+				if(fullArray[i]===fullArray[x]){finalArray.push(fullArray[i])}
+			}
+		}
+		var outputArray=[];
+		for(var i=0;i<finalArray.length;i++){
+			if(finalArray[i]!==finalArray[i+1]){outputArray.push(finalArray[i])}
+		}
+		if(finalArray[finalArray.length-1]!==finalArray[finalArray.length-2]){outputArray.push(finalArray[finalArray.length-1])}
 
+		return outputArray;
+
+
+
+ 	}
+
+ 	else{
+		throw new Error('Invalid Input');
+	}
+
+ }
 
 /*
  * PROBLEM `countBoth`: (hard)
