@@ -135,7 +135,7 @@ function absVal(integer) {
 	 if(Array.isArray(arrayOfIntegers)){
 	 	var max=arrayOfIntegers[0];	
 	 	for(i=0;i<arrayOfIntegers.length;i++){
-	 			if(typeof arrayOfIntegers[i]!=='number'){throw 'Invalid Input';}
+	 			if(typeof arrayOfIntegers[i]!=='number'){throw new Error('Invalid Input')}
 	 			else if(max<arrayOfIntegers[i]){max=arrayOfIntegers[i]}
 
 	 		}
@@ -160,12 +160,47 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+function getMonth(val){
+	var year ={
+		1:'January',
+		2:'February',
+		3:'March',
+		4:'April',
+		5:'May',
+		6:'June',
+		7:'July',
+		8:'August',
+		9:'September',
+		10:'October',
+		11:'November',
+		12:'December'
+	}
+	if(year[val]!==undefined){
+		return year[val];
+	}
+	else{
+		throw new Error('Invalid Input')
+	}
+}
 
 /*
  * PROBLEM `randomElement`: (normal)
  * Create a function called `randomElement` that takes an array of values and
  * returns one randomly selected value from that array.
  */
+
+//input: array of objects.
+//ouptu: random element(object).
+function randomElement(valArray){
+	if(Array.isArray(valArray)){
+		return valArray[Math.floor((valArray.length*Math.random()))];
+	}
+	else{
+		throw new Error('Invalid Input')
+	}
+}
+
+
 
 /*
  * PROBLEM `studentPairs`: (normal)
@@ -174,6 +209,40 @@ function absVal(integer) {
  * (array of arrays).
  */
 
+function studentPairs(arr){
+	if((Array.isArray(arr))&&(arr.length!==0)&&(arr.length %2===0)){
+		var currentIndex = arr.length, temporaryValue, randomIndex;
+
+  		
+  		while (0 !== currentIndex) {
+
+			    
+			    randomIndex = Math.floor(Math.random() * currentIndex);
+			    currentIndex -= 1;
+
+			    
+			    temporaryValue = arr[currentIndex];
+			    arr[currentIndex] = arr[randomIndex];
+			    arr[randomIndex] = temporaryValue;
+			  }
+	  	var newArr=[];
+	  	while (arr.length >1){
+  			var element=arr.splice(0,2);
+  			newArr.push(element);
+	  	}
+	  	return newArr;
+	}
+	else{
+		throw new Error('Invalid Input')
+	}
+}
+
+
+
+
+
+
+
 /*
  * PROBLEM `sumSquares`: (normal)
  * Write a function called `sumSquares` that returns the sum of squares of all
@@ -181,6 +250,21 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+function sumSquares(num){
+	if((typeof num==='number')&&(num>0)){
+		var total=0;
+		while(num>0){
+			total=total+(num*num);
+			num--;
+		}
+		return total;
+
+	}
+	else{
+		throw new Error('Invalid Input')
+	}
+
+}
 
 /* 
  * PROBLEM `findMaxDiff`: (normal)
@@ -190,6 +274,28 @@ function absVal(integer) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+ function findMaxDiff(arrayOfIntegers){
+	if(Array.isArray(arrayOfIntegers)){
+		 	var min=arrayOfIntegers[0];
+		 	var max=arrayOfIntegers[0];	
+		 	for(i=0;i<arrayOfIntegers.length;i++){
+		 			if(typeof arrayOfIntegers[i]!=='number'){throw new Error('Invalid Input')}
+		 			else {
+		 				if(max<arrayOfIntegers[i]){max=arrayOfIntegers[i]};
+		 				if(min>arrayOfIntegers[i]){min=arrayOfIntegers[i]};
+		 			}
+
+		 		}
+		 	return max-min;
+		 		
+
+
+		 	}
+	 	else{
+	 		throw new Error('Invalid Input');
+	 	}
+ }
+
 /*
  * PROBLEM `insertDashes`: (normal)
  * Write a function called `insertDashes` that transforms a given sentence into
@@ -198,6 +304,39 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+ function insertDashes(syntax) {
+	if(typeof syntax==='string'){
+	
+		var arrayOfWords=syntax.split(' ')
+		var newArrayOfWords=[];
+		for(var i=0; i<arrayOfWords.length; i++){
+			var wordArray=arrayOfWords[i].split('');
+			var newWord=[];
+			for(var x=0; x<wordArray.length; x++){
+				
+				newWord.push(wordArray[x]);
+				if (x<wordArray.length-1){newWord.push('-')};
+
+
+			}
+			newWord=newWord.join('');
+			newArrayOfWords.push(newWord);
+			if (i<arrayOfWords.length-1){newArrayOfWords.push(' ')};
+
+		}
+		
+		// var finalReturn=[];
+		// for(var i=0;i<newArrayOfWords.length;i++){
+		// 	var word=newArrayOfWords[i].substring(0,newArrayOfWords[i].length-1)
+		// 	finalReturn.push(word);
+		// }
+		return newArrayOfWords.join('');
+	}
+	else{
+		throw new Error('Invalid Input');
+	}
+	
+}
 
 /*
  * PROBLEM `mySubstring`: (normal)
@@ -210,7 +349,19 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
-
+function mySubstring(word,indexStart,indexEnd){
+	if((typeof word==='string')&&((word.indexOf(' ') <= 0))&&(typeof indexStart==='number')&&(typeof indexEnd==='number')){
+		var wordArray=word.split('');
+		var newString=[];
+		for(var i=indexStart;i<indexEnd;i++){
+			newString.push(wordArray[i]);
+		}
+		return newString.join('');
+	}
+	else{
+		throw new Error('Invalid Input');
+	}
+}
 /*
  * PROBLEM `splitSwap`: (hard)
  * Write a function called `splitSwap` that swaps two halves of a given array.
