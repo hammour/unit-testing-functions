@@ -451,6 +451,8 @@ function mySubstring(word,indexStart,indexEnd){
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+
+
 /*
  * PROBLEM `countBoth`: (hard)
  * Write a function called `countBoth` that takes two arrays of integers a and
@@ -459,6 +461,24 @@ function mySubstring(word,indexStart,indexEnd){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+ function countBoth(arr1, arr2){
+ 	if((Array.isArray(arr1))&&(Array.isArray(arr2))&&(arr1.length>0)&&(arr2.length>0)){
+ 		//check arr1 typeof elements
+ 		for(var i=0;i<arr1.length;i++){
+ 			if(typeof arr1[i]!=='number'){throw new Error('Invalid Input');}
+ 		}
+ 		//check arr2 typeof elements
+ 		for(var i=0;i<arr2.length;i++){
+ 			if(typeof arr2[i]!=='number'){throw new Error('Invalid Input');}
+ 		}
+ 		return arr1.length+arr2.length;
+ 	}
+
+ 	else{
+		throw new Error('Invalid Input');
+	}
+
+ }
 
 /*
  * PROBLEM `isDiagonalMatrix`: (nightmare)
