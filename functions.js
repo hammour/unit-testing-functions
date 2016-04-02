@@ -373,6 +373,20 @@ function mySubstring(word,indexStart,indexEnd){
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+ function splitSwap(arr){
+ 	if(Array.isArray(arr)){
+ 		var midWay = Math.ceil((arr.length)/2);
+ 		var array1 = arr.slice(0,midWay);
+ 		var array2 = arr.slice(midWay,arr.length);
+ 		return array2.concat(array1);
+
+ 	}
+ 	else{
+		throw new Error('Invalid Input');
+	}
+
+ }
+
 /*
  * PROBLEM `smallMultiples`: (hard)
  * For given n and k write a function called `smallMultiples` that returns the
@@ -383,6 +397,23 @@ function mySubstring(word,indexStart,indexEnd){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+
+ function smallMultiples(a,b){
+ 	if((typeof a==='number')&&(typeof b==='number')){
+ 		
+ 		var sum = 0;
+ 		var count=0;
+ 		while(sum+b<a){
+ 			sum=sum+b;
+ 			count++
+ 		}
+ 		return count;
+
+ 	}
+ 	else{
+		throw new Error('Invalid Input');
+	}
+ }
 
 /*
  * PROBLEM `rot13`: (hard)
